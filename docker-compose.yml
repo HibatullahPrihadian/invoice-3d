@@ -8,14 +8,6 @@ services:
     container_name: phd-craft-invoice
     restart: unless-stopped
     ports:
-      - "8080:80"
+      - "127.0.0.1:8081:80"
     environment:
       - NODE_ENV=production
-
-  cloudflared:
-    image: cloudflare/cloudflared:latest
-    container_name: cloudflared-invoice
-    restart: unless-stopped
-    command: tunnel --no-autoupdate run --token ${CLOUDFLARE_TUNNEL_TOKEN}
-    depends_on:
-      - invoice-app
